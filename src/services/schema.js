@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 const { Schema, model } = mongoose
+import reviewSchema from '../services/reviews/schema.js'
 
 
 const blogPostSchema = new Schema(
@@ -12,17 +13,20 @@ const blogPostSchema = new Schema(
            value: {type: Number, required:true},
            unit: {type: String, required: true},
        },
-       author: {
-           name: {type: String, required: true},
-           avatar: {type: String, required: true},
-       },
+       authors: [{
+             type: Schema.Types.ObjectId, ref: "Author"
+          
+       }],
+       users: [{
+           type: Schema.Types.ObjectId, ref: "User"
+       }],
        content: {type: String, required: true},
-       reviews: [
-        {
-            comment: String,
-            rate: Number,
-        },
-    ],
+      reviews: [{
+        comment: String,
+        rate: Number,
+      }
+         
+      ],
     },
     
        {

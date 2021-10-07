@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import blogsRouter from './services/index.js'
 import reviewRouter  from './services/reviews/index.js'
 import authorRouter from './services/authors/index.js'
+import userRouter from './services/users/index.js'
 import listEndpoints from 'express-list-endpoints'
 import { notFoundHandler, badRequestHandler, genericErrorHandler } from './errorhandlers.js'
 
@@ -16,8 +17,9 @@ server.use(express.json())
 
 
 server.use("/blogPosts", blogsRouter)
-server.use("/reviews", reviewRouter)
+ server.use("/reviews", reviewRouter)
 server.use("/authors", authorRouter)
+server.use("/users", userRouter)
 
 
 server.use(notFoundHandler)
